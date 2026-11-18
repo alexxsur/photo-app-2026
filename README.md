@@ -1,24 +1,71 @@
-# README
+# PhotoApp 2026
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+PhotoApp is a Rails application scaffold for a photo-sharing service. The current
+codebase is still an early scaffold: the root page, user accounts, payments, and
+photo management described in the roadmap have not been implemented.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby 3.3.13 (see `.ruby-version`)
+- Bundler
+- SQLite
 
-* System dependencies
+Install the Ruby dependencies and prepare the development database:
 
-* Configuration
+```sh
+bin/setup --skip-server
+```
 
-* Database creation
+Start the development server:
 
-* Database initialization
+```sh
+bin/dev
+```
 
-* How to run the test suite
+The health-check endpoint is available at <http://localhost:3000/up>. A home
+page has not been configured yet, so `/` is not an application landing page.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Database
 
-* Deployment instructions
+Development and test use SQLite databases under `storage/`. Production is also
+configured to use SQLite, with its database files stored in the persistent
+`/rails/storage` volume configured by Kamal. Production database backups and
+restore procedures still need to be established before deployment.
 
-* ...
+To prepare or migrate the database:
+
+```sh
+bin/rails db:prepare
+bin/rails db:migrate
+```
+
+## Tests and checks
+
+Run the Rails tests:
+
+```sh
+bin/rails db:test:prepare test
+```
+
+Run the local CI checks (Ruby lint, dependency/security audits, and tests):
+
+```sh
+bin/ci
+```
+
+## Configuration and deployment
+
+Rails encrypted credentials are edited with `bin/rails credentials:edit`.
+Never commit `config/master.key` or put plaintext secrets in source control.
+
+Deployment uses Kamal, but `config/deploy.yml` still contains example host and
+registry settings. Configure the real servers, registry, domain, HTTPS, and
+production mail delivery before deploying. Production mail currently uses the
+placeholder host `example.com`; Active Storage is configured for local disk,
+not S3.
+
+## Documentation
+
+- [Command reference](docs/COMMAND_HISTORY.md)
+- [Post-generation checks](docs/POST_GENERATION_STEPS.md)
+- [Roadmap](docs/ROADMAP.md)
