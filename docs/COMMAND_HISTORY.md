@@ -1,7 +1,28 @@
-# Command Reference
+# Command History and Reference
 
-This is a reference for common development and maintenance commands, not a
-chronological log of commands already run.
+## Project setup commands
+
+The following commands were reported as used to create and configure the
+project:
+
+```sh
+rails new photo-app-2026
+rbenv global 3.3.13
+rbenv global
+rbenv version
+ruby -v
+bundle install
+rails db:migrate
+rails generate controller welcome index
+```
+
+`rbenv global 3.3.13` selects the global Ruby version for that environment;
+`.ruby-version` also records `3.3.13` for this project. The controller
+generator creates the welcome controller, view, and test. The root route is
+configured separately in `config/routes.rb`.
+
+The commands below are a reference for common development and maintenance
+tasks, not a record that each has already been run.
 
 ## Setup and development
 

@@ -17,8 +17,9 @@ Use this checklist after generating or changing application files.
    bin/dev
    ```
 
-   The root path (`/`) is not configured yet. Add the landing page and route
-   before expecting the application home page to work.
+   The root path (`/`) already routes to `WelcomeController#index`, and `/up`
+   remains the Rails health check. The welcome view is currently just the
+   generated placeholder; replace it with the intended landing page when ready.
 
 ## Configuration checks
 
@@ -47,3 +48,7 @@ bin/ci
 
 The GitHub workflow separately runs Rails tests, RuboCop, Brakeman,
 Bundler Audit, and the Importmap audit. Review its results before merging.
+
+The generated controller test requests `welcome_index_url`. If only the root
+route is present, verify that this named route is still defined or update the
+test to request the root path before running the suite.

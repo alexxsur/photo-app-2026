@@ -2,15 +2,16 @@
 
 Implementation checklist. Mark an item complete when its code or configuration
 is present; a checked item does not mean production deployment has been tested.
-The application is currently an early Rails scaffold: `/up` is available, but
-the root page and the planned product features are not implemented yet.
+The application is currently an early Rails scaffold: `/` renders the generated
+welcome placeholder and `/up` is available, but the planned product features
+are not implemented yet.
 
 ## Step 1 — Home page
 
-- [ ] Create `WelcomeController#index`
-- [ ] Set `root "welcome#index"` (keep `/up`)
-- [ ] Minimal welcome view
-- [ ] App title in the layout (PhotoApp)
+- [x] Create `WelcomeController#index`
+- [x] Set `root "welcome#index"` (keep `/up`)
+- [x] Minimal welcome view (currently the Rails generator placeholder)
+- [x] App title in the layout (`Photo App 2026`)
 
 ## Step 2 — Production ready
 

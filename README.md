@@ -1,7 +1,7 @@
 # PhotoApp 2026
 
-PhotoApp is a Rails application scaffold for a photo-sharing service. The current
-codebase is still an early scaffold: the root page, user accounts, payments, and
+PhotoApp is a Rails application scaffold for a photo-sharing service. The root
+route renders a generated welcome placeholder; user accounts, payments, and
 photo management described in the roadmap have not been implemented.
 
 ## Requirements
@@ -22,8 +22,9 @@ Start the development server:
 bin/dev
 ```
 
-The health-check endpoint is available at <http://localhost:3000/up>. A home
-page has not been configured yet, so `/` is not an application landing page.
+The welcome page is available at <http://localhost:3000/> and the health-check
+endpoint at <http://localhost:3000/up>. The welcome view is still the Rails
+generator placeholder and has not been designed as a product landing page.
 
 ## Database
 
