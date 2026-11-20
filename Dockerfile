@@ -27,6 +27,9 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development" \
     LD_PRELOAD="/usr/local/lib/libjemalloc.so"
 
+# Node is used only while compiling the CSS bundle.
+FROM docker.io/library/node:22-slim AS node
+
 # Throw-away build stage to reduce size of final image
 FROM base AS build
 
@@ -34,6 +37,13 @@ FROM base AS build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips libyaml-dev pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Install Node.js and Yarn for cssbundling-rails asset precompilation.
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+COPY --from=node /usr/local/bin/npm /usr/local/bin/npm
+COPY --from=node /usr/local/bin/npx /usr/local/bin/npx
+COPY --from=node /usr/local/lib/node_modules/npm /usr/local/lib/node_modules/npm
+RUN npm install --global yarn@1.22.19
 
 # Install application gems
 COPY vendor/* ./vendor/

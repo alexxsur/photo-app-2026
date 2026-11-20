@@ -2,16 +2,16 @@
 
 Implementation checklist. Mark an item complete when its code or configuration
 is present; a checked item does not mean production deployment has been tested.
-The application is currently an early Rails scaffold: `/` renders the generated
-welcome placeholder and `/up` is available, but the planned product features
-are not implemented yet.
+The application has a public welcome page, Devise authentication, and Bootstrap
+styles compiled through cssbundling-rails. `/up` remains available for health
+checks; the remaining roadmap covers production readiness and product features.
 
 ## Step 1 — Home page
 
 - [x] Create `WelcomeController#index`
 - [x] Set `root "welcome#index"` (keep `/up`)
-- [x] Minimal welcome view (currently the Rails generator placeholder)
-- [x] App title in the layout (`Photo App 2026`)
+- [x] Minimal welcome view
+- [x] App title in the layout (`PhotoApp`)
 
 ## Step 2 — Production ready
 
@@ -21,21 +21,22 @@ are not implemented yet.
 
 ## Step 3 — Authentication and styling
 
-- [ ] Add Devise
-- [ ] `User` model with the confirmable module
-- [ ] Devise views (registration, session, confirmation, password)
-- [ ] `authenticate_user!` in `ApplicationController`
-- [ ] Skip authentication on `WelcomeController#index`
-- [ ] Navbar: Sign In (signed out); email, edit profile, and Logout (signed in)
-- [ ] Logout with `button_to` DELETE (Turbo-compatible)
-- [ ] Bootstrap 5 in the layout
-- [ ] `bin/rails db:migrate`
+- [x] Add Devise (without `devise-bootstrap-views`)
+- [x] `User` model with the confirmable module
+- [x] Devise views styled directly with Bootstrap 5
+- [x] `authenticate_user!` in `ApplicationController`
+- [x] Skip authentication on `WelcomeController#index`
+- [x] Navbar: Sign In (signed out); email, edit profile, and Logout (signed in)
+- [x] Logout with `button_to` DELETE (Turbo-compatible)
+- [x] Bootstrap 5 via `cssbundling-rails` (without `twitter-bootstrap-rails`)
+- [x] `bin/rails db:migrate`
 
 ## Step 4 — Sign-up email
 
 - [x] `default_url_options` in development (`localhost:3000`)
 - [ ] `default_url_options` in production (replace the `example.com` placeholder with the real domain)
 - [ ] Development delivery (`letter_opener` or `:file`) so the confirmation link can be opened
+- [ ] Replace the placeholder Devise mailer sender
 - [ ] Production SMTP from credentials
 - [ ] Verify the flow: sign up → email → confirm account
 
