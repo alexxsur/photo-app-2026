@@ -20,6 +20,15 @@ rerun as routine setup.
 | `bin/rails generate devise User --confirmable` | Generates the Devise user model and migration; confirmation columns are provided by a separate migration in this project. |
 | `bin/rails generate devise:views` | Generates Devise views for customization. |
 | `bin/rails css:install:bootstrap` | Sets up Bootstrap through cssbundling-rails. |
+| `rubocop` | Runs RuboCop to check Ruby code style. |
+| `rubocop -a` | Runs RuboCop and automatically corrects offenses it can fix. |
+| `bundle exec rubocop -a` | Runs RuboCop within the bundle and automatically corrects offenses it can fix; review the resulting changes. |
+
+Both `rubocop -a` and `bundle exec rubocop -a` apply automatic corrections;
+review the resulting changes. `bundle exec` runs the RuboCop version resolved
+by this project's Gemfile and lockfile. Without it, the shell runs the
+`rubocop` executable found in `PATH`, which may be a globally installed version
+or another version selected by the current environment.
 
 The commands below are a reference for common development and maintenance
 tasks. They are grouped by purpose and are not all required on every run.
