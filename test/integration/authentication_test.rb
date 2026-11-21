@@ -52,4 +52,16 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "input.form-control[name='user[email]']"
   end
+
+  test "signed-in user sees a personalized welcome instead of sign-up plans" do
+    post user_session_path, params: {
+      user: { email: users(:one).email, password: "password" }
+    }
+
+    follow_redirect!
+
+    assert_select ".welcome-hero h1", "Welcome back!"
+    assert_select ".welcome-hero", /#{Regexp.escape(users(:one).email)}/
+    assert_select ".plan-card", count: 0
+  end
 end

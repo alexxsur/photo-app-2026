@@ -1,2 +1,47 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.welcome-hero {
+  background:
+    radial-gradient(ellipse at 82% 18%, rgb(255 255 255 / 22%), transparent 30%),
+    linear-gradient(125deg, #173b63, #286a8e 55%, #62a6ad);
+  color: #fff;
+}
+
+.welcome-eyebrow {
+  color: #d7eff2;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.plan-card {
+  border: 1px solid var(--bs-border-color);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.plan-card:hover {
+  box-shadow: var(--bs-box-shadow) !important;
+  transform: translateY(-3px);
+}
+
+.plan-card-featured {
+  border-color: var(--bs-primary);
+}
+
+.plan-price {
+  color: var(--bs-secondary-color);
+}
+
+.plan-price span {
+  color: var(--bs-body-color);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plan-card {
+    transition: none;
+  }
+}

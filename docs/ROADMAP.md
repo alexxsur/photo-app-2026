@@ -42,10 +42,10 @@ checks; the remaining roadmap covers production readiness and product features.
 
 ## Step 5 — Landing with plans
 
-- [ ] Welcome jumbotron (unauthenticated users)
-- [ ] Premium plan ($10) and Amaze plan ($20) with a sign-up button
-- [ ] “Welcome” message with email when signed in
-- [ ] Landing styles (background image, plan cards)
+- [x] Welcome hero (unauthenticated users)
+- [x] Premium plan ($10) and Amaze plan ($20) with a sign-up button
+- [x] “Welcome” message with email when signed in
+- [x] Landing styles (gradient hero and plan cards)
 
 ## Step 6 — Payment at sign-up
 

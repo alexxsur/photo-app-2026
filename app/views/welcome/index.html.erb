@@ -1,3 +1,48 @@
 <% content_for :title, "PhotoApp" %>
 
-<h1>Welcome to PhotoApp</h1>
+<section class="welcome-hero text-center rounded-4 p-4 p-md-5 mb-5">
+  <% if user_signed_in? %>
+    <p class="welcome-eyebrow">PhotoApp</p>
+    <h1 class="display-5 fw-bold">Welcome back!</h1>
+    <p class="lead mb-0">You are signed in as <strong><%= current_user.email %></strong>.</p>
+  <% else %>
+    <p class="welcome-eyebrow">Your photos, beautifully organized</p>
+    <h1 class="display-4 fw-bold">Make room for what matters.</h1>
+    <p class="lead mb-4">Keep your favorite moments together and ready to share.</p>
+    <%= link_to "Get started", new_user_registration_path, class: "btn btn-light btn-lg px-4" %>
+  <% end %>
+</section>
+
+<% unless user_signed_in? %>
+  <section aria-labelledby="plans-heading">
+    <div class="text-center mb-4">
+      <h2 id="plans-heading" class="display-6 fw-semibold">Choose your plan</h2>
+      <p class="text-body-secondary">Start building your personal photo collection.</p>
+    </div>
+
+    <div class="row justify-content-center g-4">
+      <div class="col-md-6 col-lg-5">
+        <article class="card plan-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column p-4">
+            <h3 class="h4">Premium</h3>
+            <p class="plan-price"><span>$10</span> / month</p>
+            <p class="text-body-secondary">A little more room for your memories.</p>
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-primary mt-auto" %>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-5">
+        <article class="card plan-card plan-card-featured h-100 shadow-sm">
+          <div class="card-body d-flex flex-column p-4">
+            <span class="badge text-bg-primary align-self-start mb-2">More space</span>
+            <h3 class="h4">Amaze</h3>
+            <p class="plan-price"><span>$20</span> / month</p>
+            <p class="text-body-secondary">Even more room for every moment.</p>
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary mt-auto" %>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+<% end %>
