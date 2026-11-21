@@ -9,7 +9,8 @@ rerun as routine setup.
 
 | Command | Purpose |
 | --- | --- |
-| `rbenv global 3.3.13` | Sets the global Ruby version for the environment. The project also records this version in `.ruby-version`. |
+| `rbenv install 3.3.14` | Installs Ruby 3.3.14 using rbenv if it is not already installed. |
+| `rbenv global 3.3.13` | Originally set the global Ruby version for the environment. The project's current version is recorded in `.ruby-version`. |
 | `rbenv global` | Displays the global Ruby version. |
 | `rbenv version` | Displays the active Ruby version and where it was selected. |
 | `ruby -v` | Displays the Ruby interpreter version. |
@@ -24,6 +25,45 @@ rerun as routine setup.
 | `rubocop` | Runs RuboCop to check Ruby code style. |
 | `rubocop -a` | Runs RuboCop and automatically corrects offenses it can fix. |
 | `bundle exec rubocop -a` | Runs RuboCop within the bundle and automatically corrects offenses it can fix; review the resulting changes. |
+
+### Devise views
+
+Devise stores its own views inside the gem. Rails uses those packaged views
+when no matching application view exists. Running
+`bin/rails generate devise:views` copies all available view groups into
+`app/views/devise/` so they can be customized.
+
+The generated view groups are:
+
+| Group | Purpose |
+| --- | --- |
+| `sessions` | Sign-in forms. |
+| `registrations` | Sign-up, account editing, and account deletion. |
+| `passwords` | Password reset requests and password updates. |
+| `confirmations` | Account confirmation instructions and confirmation form. |
+| `unlocks` | Account unlock instructions and unlock form. |
+| `mailer` | Email templates for confirmation, password reset, unlock, and account changes. |
+| `shared` | Shared partials such as errors and links. |
+
+Generate only the groups needed for the enabled Devise modules:
+
+```sh
+bin/rails generate devise:views -v sessions registrations
+bin/rails generate devise:views -v passwords confirmations unlocks
+bin/rails generate devise:views -v mailer shared
+```
+
+A separate `-v` command is not required: a single option accepts a complete
+list of groups. Devise does not require application copies of these views;
+only copy the groups that need customization. With multiple Devise models,
+scoped views can be generated and enabled with `config.scoped_views = true`.
+
+Official references:
+
+- [Devise README: Configuring views](https://github.com/heartcombo/devise#configuring-views)
+- [Devise Wiki](https://github.com/heartcombo/devise/wiki)
+- [Devise Ruby documentation](https://www.rubydoc.info/gems/devise)
+- [Devise view templates](https://github.com/heartcombo/devise/tree/main/app/views/devise)
 
 Both `rubocop -a` and `bundle exec rubocop -a` apply automatic corrections;
 review the resulting changes. `bundle exec` runs the RuboCop version resolved

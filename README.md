@@ -6,7 +6,7 @@ Bootstrap styling. Payments and photo management remain planned.
 
 ## Requirements
 
-- Ruby 3.3.13 (see `.ruby-version`)
+- Ruby 3.3.14 (see `.ruby-version`)
 - Bundler
 - SQLite
 - Node.js and Yarn 1 (used to build Bootstrap CSS)
@@ -88,5 +88,6 @@ for local disk, not S3.
 ## Documentation
 
 - [Command history and reference](docs/COMMAND_HISTORY.md)
+- [Devise views and customization](docs/COMMAND_HISTORY.md#devise-views)
 - [Post-generation checks](docs/POST_GENERATION_STEPS.md)
 - [Roadmap](docs/ROADMAP.md)
