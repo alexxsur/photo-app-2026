@@ -35,8 +35,8 @@ checks; the remaining roadmap covers production readiness and product features.
 
 - [x] `default_url_options` in development (`localhost:3000`)
 - [ ] `default_url_options` in production (replace the `example.com` placeholder with the real domain)
-- [ ] Development delivery (`letter_opener` or `:file`) so the confirmation link can be opened
-- [ ] Replace the placeholder Devise mailer sender
+- [x] Development delivery through local MailCatcher (SMTP `127.0.0.1:1025`, inbox `127.0.0.1:1080`)
+- [x] Use a local development sender and allow production `MAILER_FROM` configuration
 - [ ] Production SMTP from credentials
 - [ ] Verify the flow: sign up → email → confirm account
 

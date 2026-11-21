@@ -22,6 +22,23 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert_select "input.btn.btn-primary[type='submit']"
   end
 
+  test "registration sends a confirmation email with a local URL" do
+    ActionMailer::Base.deliveries.clear
+
+    post user_registration_path, params: {
+      user: {
+        email: "new-user@example.com",
+        password: "password123",
+        password_confirmation: "password123"
+      }
+    }
+
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    email = ActionMailer::Base.deliveries.last
+    assert_equal [ "new-user@example.com" ], email.to
+    assert_includes email.body.encoded, "http://localhost:3000/users/confirmation"
+  end
+
   test "confirmed user can sign in and open account settings" do
     post user_session_path, params: {
       user: { email: users(:one).email, password: "password" }

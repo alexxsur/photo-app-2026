@@ -34,8 +34,11 @@ Use this checklist after generating or changing application files.
   secrets.
 - Development mailer URLs use `localhost:3000`. Production mailer URLs still
   use the `example.com` placeholder, and SMTP delivery is not configured.
-  Configure development delivery to inspect confirmation emails and replace
-  the placeholder sender in `config/initializers/devise.rb`.
+  Development email is configured to use MailCatcher on `127.0.0.1:1025`.
+  Start it in a separate terminal with
+  `bundle exec mailcatcher --foreground --ip 127.0.0.1`, then view captured
+  messages at <http://127.0.0.1:1080>. Replace the production placeholder host
+  and sender and configure a real SMTP provider before deployment.
 - Production uses SQLite in the persistent Kamal storage volume. Establish and
   test a backup and restore procedure before relying on production data.
 - Active Storage currently uses local disk in both development and production.

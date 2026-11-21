@@ -29,6 +29,22 @@ The welcome page is available at <http://localhost:3000/> and the health-check
 endpoint at <http://localhost:3000/up>. `bin/dev` also watches the stylesheets
 and rebuilds CSS when they change.
 
+## Local email preview
+
+Development email is sent only to a local MailCatcher instance; it is not
+delivered to real inboxes. Start MailCatcher in one terminal:
+
+```sh
+bundle exec mailcatcher --foreground --ip 127.0.0.1
+```
+
+Then start the Rails app with `bin/dev` in another terminal. Register at
+<http://localhost:3000/users/sign_up>, then open
+<http://127.0.0.1:1080> to view the confirmation email and follow its link.
+MailCatcher receives SMTP on `127.0.0.1:1025` and provides its inbox on port
+`1080`. Confirmation email delivery in production still requires a real SMTP
+provider and domain configuration.
+
 ## Database
 
 Development and test use SQLite databases under `storage/`. Production is also
@@ -65,9 +81,9 @@ Never commit `config/master.key` or put plaintext secrets in source control.
 Deployment uses Kamal, but `config/deploy.yml` still contains example host and
 registry settings. Configure the real servers, registry, domain, HTTPS, and
 production mail delivery before deploying. Production mail currently uses the
-placeholder host `example.com`, and Devise's sender is also a placeholder.
-Confirmation emails are not yet configured for local development. Active
-Storage is configured for local disk, not S3.
+placeholder host `example.com` and sender `no-reply@example.com`; set
+`APP_HOST` and `MAILER_FROM` to production values. Active Storage is configured
+for local disk, not S3.
 
 ## Documentation
 

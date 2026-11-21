@@ -15,6 +15,7 @@ rerun as routine setup.
 | `ruby -v` | Displays the Ruby interpreter version. |
 | `rails new photo-app-2026` | Creates the Rails application. |
 | `bundle install` | Installs the Ruby dependencies from the Gemfile. |
+| `bundle update` | Updates dependencies to newer versions allowed by the Gemfile and rewrites `Gemfile.lock`; review and test the resulting dependency changes. |
 | `rails generate controller welcome index` | Generates the welcome controller, view, and test; the root route is configured separately. |
 | `bin/rails generate devise:install` | Generates Devise's initial configuration. |
 | `bin/rails generate devise User --confirmable` | Generates the Devise user model and migration; confirmation columns are provided by a separate migration in this project. |
@@ -70,6 +71,7 @@ tasks. They are grouped by purpose and are not all required on every run.
 | Command | Purpose |
 | --- | --- |
 | `bin/dev` | Starts the development server and CSS watcher. |
+| `bundle exec mailcatcher --foreground --ip 127.0.0.1` | Runs MailCatcher in the foreground, bound to loopback, to capture development email for preview in its local inbox. |
 
 ## Deployment
 
